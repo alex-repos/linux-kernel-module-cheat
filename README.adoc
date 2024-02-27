@@ -1,5 +1,5 @@
 = Linux Kernel Module Cheat
-:cirosantilli-media-base: https://raw.githubusercontent.com/cirosantilli/media/master/
+:alex-repos-media-base: https://raw.githubusercontent.com/alex-repos/media/master/
 :description: The perfect emulation setup to study and develop the <<linux-kernel>> v5.9.2, kernel modules, <<qemu-buildroot-setup,QEMU>>, <<gem5-buildroot-setup,gem5>> and x86_64, ARMv7 and ARMv8 <<userland-assembly,userland>> and <<baremetal-setup,baremetal>> assembly, <<c,ANSI C>>, <<cpp,C++>> and <<posix,POSIX>>. <<gdb>> and <<kgdb>> just work. Powered by <<about-the-qemu-buildroot-setup,Buildroot>> and <<about-the-baremetal-setup,crosstool-NG>>. Highly automated. Thoroughly documented. Automated <<test-this-repo,tests>>. "Tested" in an Ubuntu 20.04 host.
 :idprefix:
 :idseparator: -
@@ -20,10 +20,10 @@ https://twitter.com/dakami/status/1344853681749934080[Dan Kaminski-approved]™ 
 
 TL;DR: xref:qemu-buildroot-setup-getting-started[xrefstyle=full]
 
-The source code for this page is located at: https://github.com/cirosantilli/linux-kernel-module-cheat[]. Due to https://github.com/isaacs/github/issues/1610[a GitHub limitation], this README is too long and not fully rendered on github.com, so either use:
+The source code for this page is located at: https://github.com/alex-repos/linux-kernel-module-cheat[]. Due to https://github.com/isaacs/github/issues/1610[a GitHub limitation], this README is too long and not fully rendered on github.com, so either use:
 
-* https://alex-repos/linux-kernel-module-cheat
-* https://alex-repos/linux-kernel-module-cheat/index-split[]: split header version
+* https://github.com/alex-repos/linux-kernel-module-cheat
+* https://github.com/alex-repos/linux-kernel-module-cheat/index-split[]: split header version
 * <<build-the-documentation,build the docs yourself>>
 
 == Getting started
@@ -90,14 +90,14 @@ Related: <<soft-topics>>.
 
 This setup has been tested on Ubuntu 20.04.
 
-The Buildroot build is already broken on Ubuntu 21.04 onwards: https://github.com/cirosantilli/linux-kernel-module-cheat/issues/155[], so just do this from inside a 20.04 Docker instead as shown in the <<docker>> setup. We could fix the build on Ubuntu 21.04, but it will break again inevitably later on.
+The Buildroot build is already broken on Ubuntu 21.04 onwards: https://github.com/alex-repos/linux-kernel-module-cheat/issues/155[], so just do this from inside a 20.04 Docker instead as shown in the <<docker>> setup. We could fix the build on Ubuntu 21.04, but it will break again inevitably later on.
 
 For other host operating systems see: xref:supported-hosts[xrefstyle=full].
 
 Reserve 12Gb of disk and run:
 
 ....
-git clone https://github.com/cirosantilli/linux-kernel-module-cheat
+git clone https://github.com/alex-repos/linux-kernel-module-cheat
 cd linux-kernel-module-cheat
 python3 -m venv .venv
 . .venv/bin/activate
@@ -108,7 +108,7 @@ python3 -m venv .venv
 
 You don't need to clone recursively even though we have `.git` submodules: `download-dependencies` fetches just the submodules that you need for this build to save time.
 
-If something goes wrong, see: xref:common-build-issues[xrefstyle=full] and use our issue tracker: https://github.com/cirosantilli/linux-kernel-module-cheat/issues
+If something goes wrong, see: xref:common-build-issues[xrefstyle=full] and use our issue tracker: https://github.com/alex-repos/linux-kernel-module-cheat/issues
 
 The initial build will take a while (30 minutes to 2 hours) to clone and build, see <<benchmark-builds>> for more details.
 
@@ -827,7 +827,7 @@ The limitations are severe however:
 Maybe we could work around this by just downloading the kernel source somehow, and using a host prebuilt GDB, but we felt that it would be too messy and unreliable.
 * you won't get the latest version of this repository. Our <<travis>> attempt to automate builds failed, and storing a release for every commit would likely make GitHub mad at us anyway.
 * <<gem5>> is not currently supported. The major blocking point is how to avoid distributing the kernel images twice: once for gem5 which uses `vmlinux`, and once for QEMU which uses `arch/*` images, see also:
-** https://github.com/cirosantilli/linux-kernel-module-cheat/issues/79
+** https://github.com/alex-repos/linux-kernel-module-cheat/issues/79
 ** <<vmlinux-vs-bzimage-vs-zimage-vs-image>>.
 
 This setup might be good enough for those developing simulators, as that requires less image modification. But once again, if you are serious about this, why not just let your computer build the <<qemu-buildroot-setup,full featured setup>> while you take a coffee or a nap? :-)
@@ -838,7 +838,7 @@ Checkout to the latest tag and use the Ubuntu packaged QEMU to boot Linux:
 
 ....
 sudo apt-get install qemu-system-x86
-git clone https://github.com/cirosantilli/linux-kernel-module-cheat
+git clone https://github.com/alex-repos/linux-kernel-module-cheat
 cd linux-kernel-module-cheat
 git checkout "$(git rev-list --tags --max-count=1)"
 ./release-download-latest
@@ -1283,7 +1283,7 @@ reboot and use the root filesystem as usual:
 
 This setup does not use the Linux kernel nor Buildroot at all: it just runs your very own minimal OS.
 
-`x86_64` is not currently supported, only `arm` and `aarch64`: I had made some x86 bare metal examples at: https://github.com/cirosantilli/x86-bare-metal-examples but I'm lazy to port them here now. Pull requests are welcome.
+`x86_64` is not currently supported, only `arm` and `aarch64`: I had made some x86 bare metal examples at: https://github.com/alex-repos/x86-bare-metal-examples but I'm lazy to port them here now. Pull requests are welcome.
 
 The main reason this setup is included in this project, despite the word "Linux" being on the project name, is that a lot of the emulator boilerplate can be reused for both use cases.
 
@@ -2118,7 +2118,7 @@ config KERNEL_UNCOMPRESSED
 
 ===== arm64 secondary CPU entry point
 
-In gem5 aarch64 Linux v4.18, experimentally the entry point of secondary CPUs seems to be `secondary_holding_pen` as shown at https://gist.github.com/cirosantilli2/34a7bc450fcb6c1c1a910369be1fdd90
+In gem5 aarch64 Linux v4.18, experimentally the entry point of secondary CPUs seems to be `secondary_holding_pen` as shown at https://gist.github.com/alex-repos2/34a7bc450fcb6c1c1a910369be1fdd90
 
 What happens is that:
 
@@ -2126,7 +2126,7 @@ What happens is that:
 * the kernel writes the entry point to the secondary CPU (the address of `secondary_holding_pen`) with CPU0 at the address given to the kernel in the `cpu-release-addr` of the DTB
 * the kernel wakes up the bootloader with a SEV, and the bootloader boots to the address the kernel told it
 
-The CPU0 action happens at: https://github.com/cirosantilli/linux/blob/v5.7/arch/arm64/kernel/smp_spin_table.c[]:
+The CPU0 action happens at: https://github.com/alex-repos/linux/blob/v5.7/arch/arm64/kernel/smp_spin_table.c[]:
 
 Here's the code that writes the address and does SEV:
 
@@ -2425,7 +2425,7 @@ fin
 
 on many (all?) functions.
 
-See also: https://github.com/cirosantilli/linux-kernel-module-cheat/issues/19
+See also: https://github.com/alex-repos/linux-kernel-module-cheat/issues/19
 
 === GDB view ARM system registers
 
@@ -3958,7 +3958,7 @@ Then, from inside that image:
 
 ....
 sudo apt-get install git
-git clone https://github.com/cirosantilli/linux-kernel-module-cheat
+git clone https://github.com/alex-repos/linux-kernel-module-cheat
 cd linux-kernel-module-cheat
 python3 -m venv .venv
 . .venv/bin/activate
@@ -4623,7 +4623,7 @@ and therefore shows one instruction running on each CPU for each process at the 
 
 ===== gem5 syscall emulation --smt
 
-gem5 b1623cb2087873f64197e503ab8894b5e4d4c7b4 syscall emulation has an `--smt` option presumably for <<hardware-threads>> but it has been neglected forever it seems: https://github.com/cirosantilli/linux-kernel-module-cheat/issues/104
+gem5 b1623cb2087873f64197e503ab8894b5e4d4c7b4 syscall emulation has an `--smt` option presumably for <<hardware-threads>> but it has been neglected forever it seems: https://github.com/alex-repos/linux-kernel-module-cheat/issues/104
 
 If we start from the manually hacked working command from <<gem5-syscall-emulation-multiple-executables>> and try to add:
 
@@ -5153,7 +5153,7 @@ TODO <<kmscube>> failed on `aarch64` with:
 kmscube[706]: unhandled level 2 translation fault (11) at 0x00000000, esr 0x92000006, in libgbm.so.1.0.0[7fbf6a6000+e000]
 ....
 
-Tested on: https://github.com/cirosantilli/linux-kernel-module-cheat/commit/38fd6153d965ba20145f53dc1bb3ba34b336bde9[38fd6153d965ba20145f53dc1bb3ba34b336bde9]
+Tested on: https://github.com/alex-repos/linux-kernel-module-cheat/commit/38fd6153d965ba20145f53dc1bb3ba34b336bde9[38fd6153d965ba20145f53dc1bb3ba34b336bde9]
 
 ==== Graphic mode gem5 aarch64
 
@@ -6056,7 +6056,7 @@ It also possible that you will need to apply some patches from newer Buildroot v
 
 Successful port reports:
 
-* v3.18: https://github.com/cirosantilli/linux-kernel-module-cheat/issues/39#issuecomment-438525481
+* v3.18: https://github.com/alex-repos/linux-kernel-module-cheat/issues/39#issuecomment-438525481
 
 === Kernel command line parameters
 
@@ -6827,7 +6827,7 @@ Bibliography:
 
 link:kernel_modules/vermagic.c[]
 
-As of kernel v5.8, you can't use `VERMAGIC_STRING` string from modules anymore as per: https://github.com/cirosantilli/linux/commit/51161bfc66a68d21f13d15a689b3ea7980457790[]. So instead we just showcase `init_utsname`.
+As of kernel v5.8, you can't use `VERMAGIC_STRING` string from modules anymore as per: https://github.com/alex-repos/linux/commit/51161bfc66a68d21f13d15a689b3ea7980457790[]. So instead we just showcase `init_utsname`.
 
 Sample insmod output as of LKMC fa8c2ee521ea83a74a2300e7a3be9f9ab86e2cb6 + 1 aarch64:
 
@@ -6935,7 +6935,7 @@ We have to call: `kernel_fpu_begin()` before starting FPU operations, and `kerne
 insmod float.ko myfloat=1 enable_fpu=0
 ....
 
-The v5.1 documentation under https://github.com/cirosantilli/linux/blob/v5.1/arch/x86/include/asm/fpu/api.h#L15[arch/x86/include/asm/fpu/api.h] reads:
+The v5.1 documentation under https://github.com/alex-repos/linux/blob/v5.1/arch/x86/include/asm/fpu/api.h#L15[arch/x86/include/asm/fpu/api.h] reads:
 
 ....
  * Use kernel_fpu_begin/end() if you intend to use FPU in kernel context. It
@@ -8897,7 +8897,7 @@ Bibliography:
 TODO: didn't port during refactor after 3b0a343647bed577586989fb702b760bd280844a. Reimplementing should not be hard.
 
 * https://www.quora.com/How-many-instructions-does-a-typical-Linux-kernel-boot-take
-* https://github.com/cirosantilli/chat/issues/31
+* https://github.com/alex-repos/chat/issues/31
 * https://rwmj.wordpress.com/2016/03/17/tracing-qemu-guest-execution/
 * `qemu/docs/tracing.txt` and `qemu/docs/replay.txt`
 * https://stackoverflow.com/questions/39149446/how-to-use-qemus-simple-trace-backend/46497873#46497873
@@ -8986,7 +8986,7 @@ It only appears once on every log I've seen so far, checked with `grep 0x1000000
 +
 Then when we count the instructions that run before the kernel entry point, there is only about 100k instructions, which is insignificant compared to the kernel boot itself.
 +
-TODO `--arch arm` and `--arch aarch64` does not count firmware instructions properly because the entry point address of the ELF file (`ffffff8008080000` for `aarch64`) does not show up on the trace at all. Tested on https://github.com/cirosantilli/linux-kernel-module-cheat/commit/f8c0502bb2680f2dbe7c1f3d7958f60265347005[f8c0502bb2680f2dbe7c1f3d7958f60265347005].
+TODO `--arch arm` and `--arch aarch64` does not count firmware instructions properly because the entry point address of the ELF file (`ffffff8008080000` for `aarch64`) does not show up on the trace at all. Tested on https://github.com/alex-repos/linux-kernel-module-cheat/commit/f8c0502bb2680f2dbe7c1f3d7958f60265347005[f8c0502bb2680f2dbe7c1f3d7958f60265347005].
 * We can also discount the instructions after `init` runs by using `readelf` to get the initial address of `init`. One easy way to do that now is to just run:
 +
 ....
@@ -9715,7 +9715,7 @@ Bibliography:
 * https://en.wikipedia.org/wiki/Direct_Rendering_Manager
 * https://en.wikipedia.org/wiki/Mode_setting KMS
 
-Tested on: https://github.com/cirosantilli/linux-kernel-module-cheat/commit/93e383902ebcc03d8a7ac0d65961c0e62af9612b[93e383902ebcc03d8a7ac0d65961c0e62af9612b]
+Tested on: https://github.com/alex-repos/linux-kernel-module-cheat/commit/93e383902ebcc03d8a7ac0d65961c0e62af9612b[93e383902ebcc03d8a7ac0d65961c0e62af9612b]
 
 ==== kmscube
 
@@ -9768,7 +9768,7 @@ See also:
 * https://stackoverflow.com/questions/26920835/can-egl-application-run-in-console-mode/26921287#26921287
 * https://stackoverflow.com/questions/3804065/how-to-use-opengl-without-a-window-manager-in-linux/50669152#50669152
 
-Tested on: https://github.com/cirosantilli/linux-kernel-module-cheat/commit/2903771275372ccfecc2b025edbb0d04c4016930[2903771275372ccfecc2b025edbb0d04c4016930]
+Tested on: https://github.com/alex-repos/linux-kernel-module-cheat/commit/2903771275372ccfecc2b025edbb0d04c4016930[2903771275372ccfecc2b025edbb0d04c4016930]
 
 ==== kmscon
 
@@ -9887,7 +9887,7 @@ We are trying to maintain a description of each at: https://unix.stackexchange.c
 
 QEMU does not seem able to boot ELF files like `vmlinux`: https://superuser.com/questions/1376944/can-qemu-boot-linux-from-vmlinux-instead-of-bzimage
 
-Converting `arch/*` images to `vmlinux` is possible in theory x86 with https://github.com/torvalds/linux/blob/v5.1/scripts/extract-vmlinux[`extract-vmlinux`] but we didn't get any gem5 boots working from images generated like that for some reason, see: https://github.com/cirosantilli/linux-kernel-module-cheat/issues/79
+Converting `arch/*` images to `vmlinux` is possible in theory x86 with https://github.com/torvalds/linux/blob/v5.1/scripts/extract-vmlinux[`extract-vmlinux`] but we didn't get any gem5 boots working from images generated like that for some reason, see: https://github.com/alex-repos/linux-kernel-module-cheat/issues/79
 
 === Virtio
 
@@ -10311,7 +10311,7 @@ This example uses:
 * the QEMU `edu` educational device, which is a minimal educational in-tree PCI example
 * the `pci.ko` kernel module, which exercises the `edu` hardware.
 +
-I've contacted the awesome original author author of `edu` https://github.com/jirislaby[Jiri Slaby], and he told there is no official kernel module example because this was created for a kernel module university course that he gives, and he didn't want to give away answers. https://github.com/cirosantilli/how-to-teach-efficiently[I don't agree with that philosophy], so students, cheat away with this repo and go make startups instead.
+I've contacted the awesome original author author of `edu` https://github.com/jirislaby[Jiri Slaby], and he told there is no official kernel module example because this was created for a kernel module university course that he gives, and he didn't want to give away answers. https://github.com/alex-repos/how-to-teach-efficiently[I don't agree with that philosophy], so students, cheat away with this repo and go make startups instead.
 
 TODO exercise DMA on the kernel module. The `edu` hardware model has that feature:
 
@@ -10932,7 +10932,7 @@ IN:
 0x000fe062:  0f 85 7b f0              jne      0xd0e1
 ....
 
-TODO: after `IN:`, symbol names are meant to show, which is awesome, but I don't get any. I do see them however when running a bare metal example from: https://github.com/cirosantilli/newlib-examples/tree/900a9725947b1f375323c7da54f69e8049158881
+TODO: after `IN:`, symbol names are meant to show, which is awesome, but I don't get any. I do see them however when running a bare metal example from: https://github.com/alex-repos/newlib-examples/tree/900a9725947b1f375323c7da54f69e8049158881
 
 TODO: what is the point of having two mechanisms, `-trace` and `-d`? `-d` tracing is cool because it does not require a messy recompile, and it can also show symbols.
 
@@ -13497,7 +13497,7 @@ We setup 2 big and 2 small CPUs, but `cat /proc/cpuinfo` shows 4 identical CPUs 
 
 TODO: why is the `--dtb` required despite `fs_bigLITTLE.py` having a DTB generation capability? Without it, nothing shows on terminal, and the simulation terminates with `simulate() limit reached  @  18446744073709551615`. The magic `vmlinux.vexpress_gem5_v1.20170616` works however without a DTB.
 
-Tested on: https://github.com/cirosantilli/linux-kernel-module-cheat/commit/18c1c823feda65f8b54cd38e261c282eee01ed9f[18c1c823feda65f8b54cd38e261c282eee01ed9f]
+Tested on: https://github.com/alex-repos/linux-kernel-module-cheat/commit/18c1c823feda65f8b54cd38e261c282eee01ed9f[18c1c823feda65f8b54cd38e261c282eee01ed9f]
 
 === gem5 in-tree tests
 
@@ -13685,7 +13685,7 @@ Exiting @ tick 18446744073709551615 because simulate() limit reached
 Other examples of the message:
 
 * <<arm-baremetal-multicore>> with a single CPU stays stopped at an WFE sleep instruction
-* this sample bug on se.py multithreading: https://github.com/cirosantilli/linux-kernel-module-cheat/issues/81
+* this sample bug on se.py multithreading: https://github.com/alex-repos/linux-kernel-module-cheat/issues/81
 
 === gem5 build options
 
@@ -13919,7 +13919,7 @@ which produces a <<gem5-config-dot,`config.dot.svg`>> like the following by with
 
 [[config-dot-svg-timingsimplecpu-caches-3-cpus-ruby]]
 .`config.dot.svg` for a system with three TimingSimpleCPU CPUs with the Ruby `MI_example` protocol.
-image::{cirosantilli-media-base}gem5_config_TimingSimpleCPU_3_CPUs_MI_example_b1623cb2087873f64197e503ab8894b5e4d4c7b4.svg?sanitize=true[height=600]
+image::{alex-repos-media-base}gem5_config_TimingSimpleCPU_3_CPUs_MI_example_b1623cb2087873f64197e503ab8894b5e4d4c7b4.svg?sanitize=true[height=600]
 
 ===== gem5 crossbar interconnect
 
@@ -15760,7 +15760,7 @@ Looking into the generated <<gem5-config-ini,`config.dot.svg`>> can give a bette
 
 [[config-dot-svg-timingsimplecpu]]
 .`config.dot.svg` for a TimingSimpleCPU without caches.
-image::{cirosantilli-media-base}gem5_config_TimingSimpleCPU_12c917de54145d2d50260035ba7fa614e25317a3.svg?sanitize=true[height=600]
+image::{alex-repos-media-base}gem5_config_TimingSimpleCPU_12c917de54145d2d50260035ba7fa614e25317a3.svg?sanitize=true[height=600]
 
 It is also helpful to see this as a tree of events where one execute event schedules other events:
 
@@ -16607,7 +16607,7 @@ It is worth noting that the caches do not affect the `ArmITB` and `ArmDTB` <<arm
 
 [[config-dot-svg-timingsimplecpu-caches]]
 .`config.dot.svg` for a TimingSimpleCPU with caches.
-image::{cirosantilli-media-base}gem5_config_TimingSimpleCPU_caches_12c917de54145d2d50260035ba7fa614e25317a3.svg?sanitize=true[height=600]
+image::{alex-repos-media-base}gem5_config_TimingSimpleCPU_caches_12c917de54145d2d50260035ba7fa614e25317a3.svg?sanitize=true[height=600]
 
 We can break down the events between the instructions as follows.
 
@@ -16818,7 +16818,7 @@ The <<gem5-config-dot,`config.dot.svg`>> now looks like this but with 3 CPUs ins
 
 [[config-dot-svg-timingsimplecpu-caches-2-cpus]]
 .`config.dot.svg` for a system with two TimingSimpleCPU with caches.
-image::{cirosantilli-media-base}gem5_config_TimingSimpleCPU_caches_2_CPUs_12c917de54145d2d50260035ba7fa614e25317a3.svg?sanitize=true[height=600]
+image::{alex-repos-media-base}gem5_config_TimingSimpleCPU_caches_2_CPUs_12c917de54145d2d50260035ba7fa614e25317a3.svg?sanitize=true[height=600]
 
 Once again we focus on the shared function region `my_thread_main` which is where the interesting cross core memory collisions will be happening.
 
@@ -19475,7 +19475,7 @@ In theory, any software can be packaged, and the Buildroot side is easy.
 +
 The hard part is dealing with crappy third party build systems and huge dependency chains.
 * it is written in Make and Bash rather than Python like LKMC
-* it downloads packages from upstream mirrors rather than having its own copy of them. Therefore, whenever https://github.com/cirosantilli/linux-kernel-module-cheat/issues/165[some random French research institute decides to break links, your build also breaks]. This is not acceptable. There are some mirroring options: https://risc-a-day.blogspot.com/2015/10/creating-local-mirror-for-buildroot.html but it's not on by default it seems, Buildroot has to have their own official and default mirror of everything.
+* it downloads packages from upstream mirrors rather than having its own copy of them. Therefore, whenever https://github.com/alex-repos/linux-kernel-module-cheat/issues/165[some random French research institute decides to break links, your build also breaks]. This is not acceptable. There are some mirroring options: https://risc-a-day.blogspot.com/2015/10/creating-local-mirror-for-buildroot.html but it's not on by default it seems, Buildroot has to have their own official and default mirror of everything.
 
 This repo basically wraps around that, and tries to make everything even more awesome for kernel developers by adding the capability of seamlessly running the stuff you've built on emulators usually via `./run`.
 
@@ -19485,8 +19485,8 @@ As this repo develops however, we've started taking some of the build out of Bui
 
 Therefore, more and more, this repo wants to take over everything that Buildroot does, and one day completely replace it to achieve emulation Nirvana, see e.g.:
 
-* https://github.com/cirosantilli/linux-kernel-module-cheat/issues/116
-* https://github.com/cirosantilli/linux-kernel-module-cheat/issues/117
+* https://github.com/alex-repos/linux-kernel-module-cheat/issues/116
+* https://github.com/alex-repos/linux-kernel-module-cheat/issues/117
 
 === Custom Buildroot configs
 
@@ -19653,8 +19653,8 @@ This mechanisms bypasses having to create/modify Buildroot packages, and is very
 
 Related threads:
 
-* https://github.com/cirosantilli/linux-kernel-module-cheat/issues/22
-* https://github.com/cirosantilli/linux-kernel-module-cheat/issues/50
+* https://github.com/alex-repos/linux-kernel-module-cheat/issues/22
+* https://github.com/alex-repos/linux-kernel-module-cheat/issues/50
 
 ==== Add new Buildroot packages
 
@@ -19726,7 +19726,7 @@ Buildroot is not designed for large root filesystem images, and the rebuild beco
 
 This is due mainly to the `pkg-generic` `GLOBAL_INSTRUMENTATION_HOOKS` sanitation which go over the entire tree doing complex operations... I no like, in particular `check_bin_arch` and `check_host_rpath`
 
-We have applied https://github.com/cirosantilli/buildroot/commit/983fe7910a73923a4331e7d576a1e93841d53812[983fe7910a73923a4331e7d576a1e93841d53812] to out Buildroot fork which removes part of the pain by not running:
+We have applied https://github.com/alex-repos/buildroot/commit/983fe7910a73923a4331e7d576a1e93841d53812[983fe7910a73923a4331e7d576a1e93841d53812] to out Buildroot fork which removes part of the pain by not running:
 
 ....
 >>>   Sanitizing RPATH in target tree
@@ -19802,7 +19802,7 @@ For Buildroot problems, you should wither provide the config you have:
 ./getvar buildroot_config_file
 ....
 
-or try to reproduce with a minimal config, see: https://github.com/cirosantilli/buildroot/tree/in-tree-package-master
+or try to reproduce with a minimal config, see: https://github.com/alex-repos/buildroot/tree/in-tree-package-master
 
 === libc choice
 
@@ -19947,7 +19947,7 @@ and then rebuild run one of the experiments from <<change-arm-sve-vector-length-
 
 Bibliography:
 
-* https://github.com/cirosantilli/linux-kernel-module-cheat/issues/87
+* https://github.com/alex-repos/linux-kernel-module-cheat/issues/87
 
 ==== Update GCC: GCC not supported by Buildroot
 
@@ -19967,7 +19967,7 @@ Known setups:
 
 * Buildroot 2018.08:
 ** GCC 8.3.0: OK
-** GCC 9.2.0: KO https://github.com/cirosantilli/linux-kernel-module-cheat/issues/97
+** GCC 9.2.0: KO https://github.com/alex-repos/linux-kernel-module-cheat/issues/97
 
 === Buildroot vanilla kernel
 
@@ -19984,7 +19984,7 @@ For example, to build the kernel and then boot it you could do:
 ./run --arch aarch64 --linux-exec "$(./getvar --arch aarch64 TODO)/vmlinux"
 ....
 
-TODO: fails on LKMC d53ffcff18aa26d24ea34b86fb80e4a5694378dch with "ERROR: No hash found for linux-4.19.16.tar.xz": https://github.com/cirosantilli/linux-kernel-module-cheat/issues/115
+TODO: fails on LKMC d53ffcff18aa26d24ea34b86fb80e4a5694378dch with "ERROR: No hash found for linux-4.19.16.tar.xz": https://github.com/alex-repos/linux-kernel-module-cheat/issues/115
 
 Note that this kernel is not configured at all by LKMC, and there is no support to do that currently: the Buildroot default kernel configs for a target are used unchanged, e.g. `make qemu_aarch64_virt_defconfig`,see also; <<buildroot-kernel-config>>.
 
@@ -20002,7 +20002,7 @@ This content makes up the bulk of the link:userland/[] directory.
 
 The quickest way to run the arch agnostic examples, which comprise the majority of the examples, is natively as shown at: xref:userland-setup-getting-started-natively[xrefstyle=full]
 
-This section was originally moved in here from: https://github.com/cirosantilli/cpp-cheat
+This section was originally moved in here from: https://github.com/alex-repos/cpp-cheat
 
 === build-userland
 
@@ -21171,7 +21171,7 @@ Local testing of those packages can be done as shown at: https://stackoverflow.c
 The packages will also be published to the NPM registry, so you can also play with them as:
 
 ....
-npm install cirosantilli-<directory-name>
+npm install alex-repos-<directory-name>
 ....
 
 ====== NPM data-files
@@ -21202,7 +21202,7 @@ This is still work in progress and needs better automation, but is already a goo
 * create a mechanism to run all or some selected hand coded inputs
 * create a mechanism to run generated input
 
-The idea was originally started at: https://github.com/cirosantilli/algorithm-cheat
+The idea was originally started at: https://github.com/alex-repos/algorithm-cheat
 
 The key idea is that input / output pairs are present in human readable files generated either:
 
@@ -21419,7 +21419,7 @@ Source: link:userland/libs/eigen/hello.cpp[]
 
 This example just creates a matrix and prints it out.
 
-Tested on: https://github.com/cirosantilli/linux-kernel-module-cheat/commit/a4bdcf102c068762bb1ef26c591fcf71e5907525[a4bdcf102c068762bb1ef26c591fcf71e5907525]
+Tested on: https://github.com/alex-repos/linux-kernel-module-cheat/commit/a4bdcf102c068762bb1ef26c591fcf71e5907525[a4bdcf102c068762bb1ef26c591fcf71e5907525]
 
 === Benchmarks
 
@@ -21493,7 +21493,7 @@ The following basenames should always refer to programs that do the same thing, 
 
 === Userland content bibliography
 
-* The Linux Programming Interface by Michael Kerrisk https://www.amazon.co.uk/Linux-Programming-Interface-System-Handbook/dp/1593272200 Lots of open source POSIX examples: https://github.com/cirosantilli/linux-programming-interface-kerrisk
+* The Linux Programming Interface by Michael Kerrisk https://www.amazon.co.uk/Linux-Programming-Interface-System-Handbook/dp/1593272200 Lots of open source POSIX examples: https://github.com/alex-repos/linux-programming-interface-kerrisk
 
 == Userland assembly
 
@@ -21503,8 +21503,8 @@ This section will document ISA agnostic concepts, and you should read it first.
 
 ISA specifics are covered at:
 
-* <<x86-userland-assembly>> under link:userland/arch/x86_64/[], originally migrated from: https://github.com/cirosantilli/x86-assembly-cheat
-* <<arm-userland-assembly>> originally migrated from https://github.com/cirosantilli/arm-assembly-cheat under:
+* <<x86-userland-assembly>> under link:userland/arch/x86_64/[], originally migrated from: https://github.com/alex-repos/x86-assembly-cheat
+* <<arm-userland-assembly>> originally migrated from https://github.com/alex-repos/arm-assembly-cheat under:
 ** link:userland/arch/arm/[]
 ** link:userland/arch/aarch64/[]
 
@@ -22101,7 +22101,7 @@ Due to the way that <<gem5-syscall-emulation-multithreading>> however, the outpu
 
 link:userland/linux/perf_event_open.c[]
 
-On ARM, `perf_event_open` uses the <<arm-pmu>>. The mapping between kernel events and ARM PMU events can be found at: https://github.com/cirosantilli/linux/blob/v5.9/arch/arm64/kernel/perf_event.c
+On ARM, `perf_event_open` uses the <<arm-pmu>>. The mapping between kernel events and ARM PMU events can be found at: https://github.com/alex-repos/linux/blob/v5.9/arch/arm64/kernel/perf_event.c
 
 Bibliography:
 
@@ -22391,7 +22391,7 @@ Where the instruction encoding allows for:
 * `b`: any 32-bit general purpose register except ESP
 * `c`: 1, 2, 4 or 8 (encoded in 2 SIB bits)
 * `d`: immediate constant
-* `s`: a segment register. Cannot be tested simply from userland, so we won't talk about them here. See: https://github.com/cirosantilli/x86-bare-metal-examples/blob/6606a2647d44bc14e6fd695c0ea2b6b7a5f04ca3/segment_registers_real_mode.S
+* `s`: a segment register. Cannot be tested simply from userland, so we won't talk about them here. See: https://github.com/alex-repos/x86-bare-metal-examples/blob/6606a2647d44bc14e6fd695c0ea2b6b7a5f04ca3/segment_registers_real_mode.S
 
 The common compiler usage is:
 
@@ -24362,7 +24362,7 @@ https://en.wikipedia.org/wiki/Executable_and_Linkable_Format
 
 This is the main format for executables, object files (`.o`) and shared libraries (`.so`) in Linux.
 
-An introduction to the format can be found at: https://alex-repos/elf-hello-world
+An introduction to the format can be found at: https://github.com/alex-repos/elf-hello-world
 
 == IEEE 754
 
@@ -24638,7 +24638,7 @@ with the prebuilt toolchain, and I'm lazy to debug.
 [[baremetal-cpp]]
 === Baremetal C++
 
-Didn't get it working, traking at: https://github.com/cirosantilli/linux-kernel-module-cheat/issues/119
+Didn't get it working, traking at: https://github.com/alex-repos/linux-kernel-module-cheat/issues/119
 
 === GDB builtin CPU simulator
 
@@ -24684,11 +24684,11 @@ Bibliography:
 
 Since I had this compiled, I also decided to try it out on userland.
 
-I was also able to run a freestanding Linux userland example on it: https://github.com/cirosantilli/arm-assembly-cheat/blob/cd232dcaf32c0ba6399b407e0b143d19b6ec15f4/v7/linux/hello.S
+I was also able to run a freestanding Linux userland example on it: https://github.com/alex-repos/arm-assembly-cheat/blob/cd232dcaf32c0ba6399b407e0b143d19b6ec15f4/v7/linux/hello.S
 
 It just ignores the <<arm-svc-instruction>> however, and does not forward syscalls to the host like QEMU does.
 
-Then I tried a glibc example: https://github.com/cirosantilli/arm-assembly-cheat/blob/cd232dcaf32c0ba6399b407e0b143d19b6ec15f4/v7/mov.S
+Then I tried a glibc example: https://github.com/alex-repos/arm-assembly-cheat/blob/cd232dcaf32c0ba6399b407e0b143d19b6ec15f4/v7/mov.S
 
 First it wouldn't break, so I added `-static` to the `Makefile`, and then it started failing with:
 
@@ -24708,7 +24708,7 @@ shows ARM version up to `armv6`, so maybe `armv6` is not implemented?
 
 In this section we will focus on learning ARM architecture concepts that can only learnt on baremetal setups.
 
-Userland information can be found at: https://github.com/cirosantilli/arm-assembly-cheat
+Userland information can be found at: https://github.com/alex-repos/arm-assembly-cheat
 
 ==== ARM exception levels
 
@@ -24793,7 +24793,7 @@ TODO: the call:
 ./run --arch arm --baremetal userland/arch/arm/dump_regs.c --emulator gem5 -- --param 'system.have_virtualization = True'
 ....
 
-started failing with an exception since https://github.com/cirosantilli/linux-kernel-module-cheat/commit/add6eedb76636b8f443b815c6b2dd160afdb7ff4 at the instruction:
+started failing with an exception since https://github.com/alex-repos/linux-kernel-module-cheat/commit/add6eedb76636b8f443b815c6b2dd160afdb7ff4 at the instruction:
 
 ....
 vmsr fpexc, r0
@@ -25658,9 +25658,9 @@ In gem5 3126e84db773f64e46b1d02a9a27892bf6612d30, the GIC is determined by selec
 
 ==== ARM paging
 
-TODO create a minimal working aarch64 example analogous to the x86 one at: https://github.com/cirosantilli/x86-bare-metal-examples/blob/6dc9a73830fc05358d8d66128f740ef9906f7677/paging.S
+TODO create a minimal working aarch64 example analogous to the x86 one at: https://github.com/alex-repos/x86-bare-metal-examples/blob/6dc9a73830fc05358d8d66128f740ef9906f7677/paging.S
 
-A general introduction to paging with x86 examples can be found at: https://alex-repos/x86-paging[].
+A general introduction to paging with x86 examples can be found at: https://github.com/alex-repos/x86-paging[].
 
 Then, this article is amazing: https://www.starlab.io/blog/deep-dive-mmu-virtualization-with-xen-on-arm
 
@@ -25896,7 +25896,7 @@ See: xref:test-this-repo[xrefstyle=full] for more useful testing tips.
 
 == Android
 
-Remember: Android AOSP is a huge undocumented piece of bloatware. It's integration into this repo will likely never be super good. See also: https://alex-repos#android
+Remember: Android AOSP is a huge undocumented piece of bloatware. It's integration into this repo will likely never be super good. See also: https://github.com/alex-repos#android
 
 Verbose setup description: https://stackoverflow.com/questions/1809774/how-to-compile-the-android-aosp-kernel-and-test-it-with-the-android-emulator/48310014#48310014
 
@@ -26158,7 +26158,7 @@ In this section document how benchmark builds and runs of this repo, and how to 
 
 Ideally, we should setup an automated build server that benchmarks those things continuously for us, but our <<travis>> attempt failed.
 
-So currently, we are running benchmarks manually when it seems reasonable and uploading them to: https://github.com/cirosantilli/linux-kernel-module-cheat-regression
+So currently, we are running benchmarks manually when it seems reasonable and uploading them to: https://github.com/alex-repos/linux-kernel-module-cheat-regression
 
 All benchmarks were run on the <<p51>> machine, unless stated otherwise.
 
@@ -26166,7 +26166,7 @@ Run all benchmarks and upload the results:
 
 ....
 cd ..
-git clone https://github.com/cirosantilli/linux-kernel-module-cheat-regression
+git clone https://github.com/alex-repos/linux-kernel-module-cheat-regression
 cd -
 ./bench-all -A
 ....
@@ -26179,13 +26179,13 @@ We haven't setup any of them yet.
 
 ==== Travis
 
-We tried to automate it on Travis with link:.travis.yml[] but it hits the current 50 minute job timeout: https://travis-ci.org/cirosantilli/linux-kernel-module-cheat/builds/296454523 And I bet it would likely hit a disk maxout either way if it went on.
+We tried to automate it on Travis with link:.travis.yml[] but it hits the current 50 minute job timeout: https://travis-ci.org/alex-repos/linux-kernel-module-cheat/builds/296454523 And I bet it would likely hit a disk maxout either way if it went on.
 
 ==== CircleCI
 
 This setup successfully built gem5 on every commit: link:.circleci/config.yml[]
 
-Enabling it is however blocked on: https://github.com/cirosantilli/linux-kernel-module-cheat/issues/79 so we disabled the builds on the web UI.
+Enabling it is however blocked on: https://github.com/alex-repos/linux-kernel-module-cheat/issues/79 so we disabled the builds on the web UI.
 
 If that ever gets done, we will also need to:
 
@@ -26318,7 +26318,7 @@ while aarch64 only 7 minutes.
 
 I had previously documented on README 10 minutes at: 2eff007f7c3458be240c673c32bb33892a45d3a0 found with `git log` search for `10 minutes`. But then I checked out there, run it, and kernel panics before any messages come out. Lol?
 
-Logs of the runs can be found at: https://github.com/cirosantilli2/gem5-issues/tree/0df13e862b50ae20fcd10bae1a9a53e55d01caac/arm-hpi-slow
+Logs of the runs can be found at: https://github.com/alex-repos2/gem5-issues/tree/0df13e862b50ae20fcd10bae1a9a53e55d01caac/arm-hpi-slow
 
 The cycle count is higher for `arm`, 350M vs 250M for `aarch64`, not nowhere near the 5x runtime time increase.
 
@@ -26327,7 +26327,7 @@ A quick look at the boot logs show that they are basically identical in structur
 [[gem5-x86-64-derivo3cpu-boot-panics]]
 ===== gem5 x86_64 DerivO3CPU boot panics
 
-https://github.com/cirosantilli2/gem5-issues/issues/2
+https://github.com/alex-repos2/gem5-issues/issues/2
 
 ....
 Kernel panic - not syncing: Attempted to kill the idle task!
@@ -27934,7 +27934,7 @@ error while converting qcow2: Failed to get "write" lock
 
 When doing long simulations sweeping across multiple system parameters, it becomes fundamental to do multiple simulations in parallel.
 
-This is specially true for gem5, which runs much slower than QEMU, and cannot use multiple host cores to speed up the simulation: https://github.com/cirosantilli2/gem5-issues/issues/15[], so the only way to parallelize is to run multiple instances in parallel.
+This is specially true for gem5, which runs much slower than QEMU, and cannot use multiple host cores to speed up the simulation: https://github.com/alex-repos2/gem5-issues/issues/15[], so the only way to parallelize is to run multiple instances in parallel.
 
 This also has a good synergy with <<build-variants>>.
 
@@ -28665,7 +28665,7 @@ This magic output string is notably generated by:
 * link:rootfs_overlay/lkmc/test_fail.sh[], which is used by <<test-userland-in-full-system>>
 * the `exit()` baremetal function when `status != 1`.
 +
-Unfortunately the only way we found to set this up was with `on_exit`: https://github.com/cirosantilli/linux-kernel-module-cheat/issues/59[].
+Unfortunately the only way we found to set this up was with `on_exit`: https://github.com/alex-repos/linux-kernel-module-cheat/issues/59[].
 +
 Trying to patch `_exit` directly fails since at that point some de-initialization has already happened which prevents the print.
 +
@@ -28780,7 +28780,7 @@ cd "$(./getvar linux_source_dir)"
 
 # Create a branch before the rebase in case things go wrong.
 git checkout -b "lkmc-${last_mainline_revision}"
-git remote set-url origin git@github.com:cirosantilli/linux.git
+git remote set-url origin git@github.com:alex-repos/linux.git
 git push
 git checkout master
 
@@ -28828,7 +28828,7 @@ Now let's do an out-of-box testing for the release candidate:
 
 ....
 cd ..
-git clone https://github.com/cirosantilli/linux-kernel-module-cheat linux-kernel-module-cheat-release
+git clone https://github.com/alex-repos/linux-kernel-module-cheat linux-kernel-module-cheat-release
 cd linux-kernel-module-cheat-release
 ....
 
@@ -28839,7 +28839,7 @@ Clean up, and re-start from scratch:
 ....
 cd ..
 rm -rf linux-kernel-module-cheat-release
-git clone https://github.com/cirosantilli/linux-kernel-module-cheat linux-kernel-module-cheat-release
+git clone https://github.com/alex-repos/linux-kernel-module-cheat linux-kernel-module-cheat-release
 cd linux-kernel-module-cheat-release
 ....
 
