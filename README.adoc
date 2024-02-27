@@ -22,8 +22,8 @@ TL;DR: xref:qemu-buildroot-setup-getting-started[xrefstyle=full]
 
 The source code for this page is located at: https://github.com/cirosantilli/linux-kernel-module-cheat[]. Due to https://github.com/isaacs/github/issues/1610[a GitHub limitation], this README is too long and not fully rendered on github.com, so either use:
 
-* https://cirosantilli.com/linux-kernel-module-cheat
-* https://cirosantilli.com/linux-kernel-module-cheat/index-split[]: split header version
+* https://alex-repos/linux-kernel-module-cheat
+* https://alex-repos/linux-kernel-module-cheat/index-split[]: split header version
 * <<build-the-documentation,build the docs yourself>>
 
 == Getting started
@@ -24362,7 +24362,7 @@ https://en.wikipedia.org/wiki/Executable_and_Linkable_Format
 
 This is the main format for executables, object files (`.o`) and shared libraries (`.so`) in Linux.
 
-An introduction to the format can be found at: https://cirosantilli.com/elf-hello-world
+An introduction to the format can be found at: https://alex-repos/elf-hello-world
 
 == IEEE 754
 
@@ -25660,7 +25660,7 @@ In gem5 3126e84db773f64e46b1d02a9a27892bf6612d30, the GIC is determined by selec
 
 TODO create a minimal working aarch64 example analogous to the x86 one at: https://github.com/cirosantilli/x86-bare-metal-examples/blob/6dc9a73830fc05358d8d66128f740ef9906f7677/paging.S
 
-A general introduction to paging with x86 examples can be found at: https://cirosantilli.com/x86-paging[].
+A general introduction to paging with x86 examples can be found at: https://alex-repos/x86-paging[].
 
 Then, this article is amazing: https://www.starlab.io/blog/deep-dive-mmu-virtualization-with-xen-on-arm
 
@@ -25896,7 +25896,7 @@ See: xref:test-this-repo[xrefstyle=full] for more useful testing tips.
 
 == Android
 
-Remember: Android AOSP is a huge undocumented piece of bloatware. It's integration into this repo will likely never be super good. See also: https://cirosantilli.com#android
+Remember: Android AOSP is a huge undocumented piece of bloatware. It's integration into this repo will likely never be super good. See also: https://alex-repos#android
 
 Verbose setup description: https://stackoverflow.com/questions/1809774/how-to-compile-the-android-aosp-kernel-and-test-it-with-the-android-emulator/48310014#48310014
 
