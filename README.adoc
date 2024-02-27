@@ -44,12 +44,6 @@ python3 -m venv .venv
 firefox index.html
 ....
 
-see also: https://cirosantilli.com/china-dictatorship/mirrors
-
-The secondary systems programming functionality is described on the sections below starting from <<getting-started>>.
-
-image::https://raw.githubusercontent.com/cirosantilli/china-dictatorship-media/master/Tiananmen_cute_girls.jpg[width=800]
-
 == Getting started
 
 Each child section describes a possible different setup for this repo.
